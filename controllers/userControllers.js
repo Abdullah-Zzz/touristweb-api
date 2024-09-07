@@ -46,7 +46,7 @@ const loginUser = async (req, res) => {
             }
 
             if (password === chkExists.password) {
-                res.setHeader('Set-Cookie', `myCookie=${JWT_TOKEN}; Max-Age=600; Path=/; Secure`);
+                res.setHeader('Set-Cookie', `myCookie=${JWT_TOKEN}; Max-Age=600; Path=/;`);
                 res.status(200).json({
                     message: "Logged In",
                     token:JWT_TOKEN
