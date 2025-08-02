@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken")
 const registModel = require("../Schemas/Register")
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
+const cookieParser = require('cookie-parser')
 
 const chkTokenExists = (req, res, next)=>{
     try{
-        const cookie = req.headers.cookie
+        const cookie = req.cookies.myCookie
         if(cookie){
             next();
         }
@@ -19,8 +20,7 @@ const chkTokenExists = (req, res, next)=>{
 
 const verifyToken = (req, res, next) =>{
     try{
-        const cookies = req.headers.cookie;
-        const token= cookies.split("=")[1]
+         const token= req.cookies.myCookie
         if (!token){
             return res.status(404).json('No Token Found')
         }
